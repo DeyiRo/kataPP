@@ -16,20 +16,19 @@ import java.util.concurrent.Executor;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
+        UserService userService = new UserServiceImpl();
 
-        UserDao userDao = new UserDaoJDBCImpl();
+        userService.createUsersTable();
 
-        userDao.createUsersTable();
+        userService.saveUser("Otto", "Octavius", (byte) 35);
+        userService.saveUser("Leo", "Leonis", (byte) 25);
+        userService.saveUser("Tutta", "Turtules", (byte) 19);
+        userService.saveUser("Jago", "Jaguaros", (byte) 25);
 
-        userDao.saveUser("Otto", "Octavius", (byte) 35);
-        userDao.saveUser("Leo", "Leonis", (byte) 25);
-        userDao.saveUser("Tutta", "Turtules", (byte) 19);
-        userDao.saveUser("Jago", "Jaguaros", (byte) 25);
-
-        userDao.removeUserById(3);
-        userDao.getAllUsers();
-        userDao.cleanUsersTable();
-        userDao.dropUsersTable();
+        userService.removeUserById(3);
+        userService.getAllUsers();
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
 
     }
 
